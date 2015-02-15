@@ -11,7 +11,6 @@ class Behaviorable {
     addBehavior(bahevior) {
         this.behaviors[bahevior.name] = bahevior;
         this.behaviors[bahevior.name].setTarget(this);
-        console.log("[Door] :: added behavior " + bahevior.name);
         return bahevior;
     }
 

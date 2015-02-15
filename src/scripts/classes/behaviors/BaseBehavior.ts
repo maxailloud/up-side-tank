@@ -6,7 +6,6 @@ class BaseBehavior implements BehaviorInterface {
 
     setTarget(target) {
         this.target = target;
-        console.log('[' + this.name + '] :: added target ' + target);
     }
 
     behave() {

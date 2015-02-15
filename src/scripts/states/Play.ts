@@ -12,14 +12,9 @@ class Play extends Phaser.State {
 
         this.game.physics.arcade.enable(this.sprite);
 
-        this.sprite.body.collideWorldBounds = true;
-        this.sprite.body.bounce.setTo(1, 1);
-        this.sprite.body.velocity.x = this.game.rnd.integerInRange(-500, 500);
-        this.sprite.body.velocity.y = this.game.rnd.integerInRange(-500, 500);
         this.sprite.events.onInputDown.add(this.clickListener, this);
 
         this.player = new Player(this.game, 50, 50);
-        this.player.getBehavior("Flammable").behave();
 
         this.game.onPause.add(function() {
             console.log('pause...');
