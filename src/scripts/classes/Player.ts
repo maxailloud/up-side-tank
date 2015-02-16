@@ -2,44 +2,74 @@
 
 class Player extends Behaviorable {
     game: Phaser.Game;
-    sprites: Phaser.Group;
+    tank: Phaser.Sprite;
+    turret: Phaser.Sprite;
+    speed: number
 
     constructor(game: Phaser.Game, x: number, y: number) {
         super();
         this.game = game;
-        var body = new Phaser.Sprite(game, x, y, 'tanks', 'tankBlue_outline');
-        var turret = new Phaser.Sprite(game, x + (body.width / 2), y + (body.height / 2), 'tanks', 'barrelBlue_outline');
-        turret.anchor.x = 0.5;
+        this.tank = this.game.add.sprite(x, y, 'tanks', 'tankBlue_outline');
+        this.tank.anchor.setTo(0.5,0.5);
+        this.turret = this.game.add.sprite(this.tank.x, this.tank.y, 'tanks', 'barrelBlue_outline');
+        this.turret.anchor.x = 0.5;
 
-        this.sprites = this.game.add.group();
-        this.sprites.add(body);
-        this.sprites.add(turret);
+        this.tank.name = 'player';
+        this.game.physics.enable(this.tank, Phaser.Physics.ARCADE, true);
+        this.tank.body.immovable = false;
+        this.tank.body.drag.set(0.2);
+        this.tank.body.maxVelocity.setTo(400, 400);
+        this.tank.body.collideWorldBounds = true;
 
-        this.game.add.existing(this.sprites);
+        this.speed = 0;
+
+        this.turret.bringToTop();
     }
 
     update() {
         super.update();
+
         if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-            this.sprites.x -= 10;
+            this.tank.angle += 4;
         }
-        if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-            this.sprites.x += 10;
+        else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+            this.tank.angle -= 4;
         }
-        if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-            this.sprites.y -= 10;
+
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP))
+        {
+            this.speed = 300;
         }
-        if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-            this.sprites.y += 10;
+        else
+        {
+            if (this.speed > 0)
+            {
+                this.speed -= 4;
+            }
         }
-        if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-            var barrel: PIXI.DisplayObject = this.sprites.getChildAt(1);
-            barrel.rotation += 0.1;
-            barrel.rotation = Phaser.Math.angleBetweenPoints(this.sprites.position, this.game.input.position);
+
+        if (this.speed > 0)
+        {
+            this.game.physics.arcade.velocityFromRotation(this.tank.rotation, this.speed, this.tank.body.velocity);
+        }
+
+        this.turret.x = this.tank.x;
+        this.turret.y = this.tank.y;
+
+        this.turret.rotation = this.game.physics.arcade.angleToPointer(this.turret);
+
+        if (this.game.input.activePointer.isDown)
+        {
+            this.fire();
         }
     }
 
-    destroyed() {
-        this.sprites.destroy();
+    destroyed(): void {
+        this.tank.destroy();
+        this.turret.destroy();
+    }
+
+    fire(): void {
+        console.log('fire');
     }
 }

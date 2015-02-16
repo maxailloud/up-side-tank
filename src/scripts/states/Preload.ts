@@ -20,7 +20,6 @@ class Preload extends Phaser.State {
         this.load.image('menu_button1', 'assets/images/menu_button.png');
         this.load.image('menu_button2', 'assets/images/menu_button2.png');
         this.load.image('menu_button3', 'assets/images/menu_button3.png');
-        this.load.image('yeoman', 'assets/images/yeoman-logo.png');
         this.load.atlasXML('tanks', 'assets/spritesheets/tanks.png', 'assets/spritesheets/tanks.xml');
     }
 
