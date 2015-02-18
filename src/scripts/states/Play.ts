@@ -6,7 +6,7 @@ class Play extends Phaser.State {
     player: Player;
 
     create() {
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.game.physics.startSystem(Phaser.Physics.P2JS);
         this.game.world.setBounds(-500, -500, 1000, 1000);
 
         this.player = new Player(this.game, 350, 350);
@@ -21,9 +21,5 @@ class Play extends Phaser.State {
 
     update() {
         this.player.update();
-    }
-
-    render() {
-        this.game.debug.body(this.player.tank);
     }
 }
