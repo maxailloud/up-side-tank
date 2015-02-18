@@ -22,8 +22,6 @@ class Player extends Behaviorable {
         this.tank.body.collideWorldBounds = true;
 
         this.speed = 0;
-
-        this.turret.bringToTop();
     }
 
     update() {
@@ -56,7 +54,7 @@ class Player extends Behaviorable {
         this.turret.x = this.tank.x;
         this.turret.y = this.tank.y;
 
-        this.turret.rotation = this.game.physics.arcade.angleToPointer(this.turret);
+        this.turret.rotation = this.game.physics.arcade.angleToPointer(this.turret) - Math.PI/2;
 
         if (this.game.input.activePointer.isDown)
         {

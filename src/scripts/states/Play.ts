@@ -22,4 +22,8 @@ class Play extends Phaser.State {
     update() {
         this.player.update();
     }
+
+    render() {
+        this.game.debug.body(this.player.tank);
+    }
 }
