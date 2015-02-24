@@ -7,7 +7,4 @@ class BaseBehavior implements BehaviorInterface {
     setTarget(target) {
         this.target = target;
     }
-
-    behave() {
-    }
 }

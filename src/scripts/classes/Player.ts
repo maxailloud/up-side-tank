@@ -8,6 +8,7 @@ class Player extends Behaviorable {
 
     constructor(game: Phaser.Game, x: number, y: number) {
         super();
+
         this.game = game;
         this.tank = this.game.add.sprite(x, y, 'tanks', 'tankBlue_outline');
         this.tank.anchor.setTo(0.5,0.5);
@@ -57,19 +58,10 @@ class Player extends Behaviorable {
         this.turret.y = this.tank.y;
 
         this.turret.rotation = this.game.physics.arcade.angleToPointer(this.turret);
-
-        if (this.game.input.activePointer.isDown)
-        {
-            this.fire();
-        }
     }
 
     destroyed(): void {
         this.tank.destroy();
         this.turret.destroy();
-    }
-
-    fire(): void {
-        console.log('fire');
     }
 }

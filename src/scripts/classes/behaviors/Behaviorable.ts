@@ -8,10 +8,10 @@ class Behaviorable {
         this.behaviors = [];
     }
 
-    addBehavior(bahevior) {
-        this.behaviors[bahevior.name] = bahevior;
-        this.behaviors[bahevior.name].setTarget(this);
-        return bahevior;
+    addBehavior(behavior) {
+        this.behaviors[behavior.name] = behavior;
+        this.behaviors[behavior.name].setTarget(this);
+        return behavior;
     }
 
     getBehavior(behaviorName: string) {
