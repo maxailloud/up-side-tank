@@ -16,7 +16,7 @@ class FireableBehavior extends BaseBehavior {
         this.bullets = this.game.add.group();
         this.bullets.enableBody = true;
         this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
-        this.bullets.createMultiple(30, 'bullet', 0, false);
+        this.bullets.createMultiple(30, 'tanks', 'bulletBlue', false);
         this.bullets.setAll('anchor.x', 0.5);
         this.bullets.setAll('anchor.y', 0.5);
         this.bullets.setAll('outOfBoundsKill', true);
