@@ -1,4 +1,5 @@
 /// <reference path="behaviors/Behaviorable.ts" />
+/// <reference path="../classes/behaviors/FireableBehavior.ts" />
 
 class Player extends Behaviorable {
     game: Phaser.Game;
@@ -20,6 +21,8 @@ class Player extends Behaviorable {
 
         this.turret = this.game.add.sprite(this.tank.x, this.tank.y, 'tanks', 'barrelBlue_outline');
         this.turret.anchor.x = 0.5;
+
+        this.addBehavior(new FireableBehavior(this.game, this.turret));
     }
 
     update() {
