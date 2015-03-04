@@ -25,8 +25,8 @@ class Player extends Behaviorable {
 
         this.addBehavior(new FireableBehavior(this.game, this.turret));
 
-        //this.tank.bringToTop();
-        //this.turret.bringToTop();
+        this.tank.bringToTop();
+        this.turret.bringToTop();
     }
 
     update() {

@@ -39,7 +39,7 @@ class FireableBehavior extends BaseBehavior {
 
             var bullet = this.bullets.getFirstExists(false);
 
-            bullet.reset(this.turret.x + 100, this.turret.y);
+            bullet.reset(this.turret.x, this.turret.y);
 
             bullet.rotation = this.game.physics.arcade.moveToPointer(bullet, 1000, this.game.input.activePointer, 500);
         }
