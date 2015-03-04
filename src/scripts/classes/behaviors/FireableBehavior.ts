@@ -36,7 +36,6 @@ class FireableBehavior extends BaseBehavior {
     fire(): void {
         if (this.game.time.now > this.nextFire && this.bullets.countDead() > 0)
         {
-            console.log('fire');
             this.nextFire = this.game.time.now + this.fireRate;
 
             var bullet = this.bullets.getFirstExists(false);
