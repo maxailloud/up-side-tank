@@ -7,7 +7,7 @@ class FireableBehavior extends BaseBehavior {
     turret: Phaser.Sprite;
 
     bullets: Phaser.Group;
-    fireRate: number = 1000;
+    fireRate: number = 100;
     nextFire: number = 0;
 
     constructor(game: Phaser.Game, turret: Phaser.Sprite) {
@@ -26,7 +26,6 @@ class FireableBehavior extends BaseBehavior {
     }
 
     update(): void {
-        // console.log("[Fireable] :: update");
         if (this.game.input.activePointer.isDown)
         {
             this.fire();
@@ -40,9 +39,9 @@ class FireableBehavior extends BaseBehavior {
 
             var bullet = this.bullets.getFirstExists(false);
 
-            bullet.reset(this.turret.x, this.turret.y);
+            bullet.reset(this.turret.x + 100, this.turret.y);
 
-            bullet.rotation = this.game.physics.arcade.moveToPointer(bullet, 100, this.game.input.activePointer, 500);
+            bullet.rotation = this.game.physics.arcade.moveToPointer(bullet, 1000, this.game.input.activePointer, 500);
         }
     }
 }
